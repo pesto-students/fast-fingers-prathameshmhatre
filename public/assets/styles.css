@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'LaserCorpsGradient';
+  src: url('./fonts/lasercorpsgrad-webfont.woff2') format('woff2'),
+    url('./fonts/lasercorpsgrad-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'gothambook';
+  src: url('./fonts/gotham_book_regular-webfont.woff2') format('woff2'),
+    url('./fonts/gotham_book_regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.large-keyboard {
+  font-size: 13em !important;
+  color: #ff5155;
+}
+.title-container {
+  font-family: 'LaserCorpsGradient';
+  font-size: 81px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: left;
+  color: #ff5155;
+}
+.subtitle-container {
+  font-family: 'gothambook';
+  font-size: 26px;
+  font-weight: 500;
+  color: #ff5155;
+}
+.subtitle-container:before,
+.subtitle-container:after {
+  background-color: #ff5155;
+  content: '';
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.subtitle-container:before {
+  right: 1px;
+  margin-left: -50%;
+}
+
+.subtitle-container:after {
+  left: 1px;
+  margin-right: -50%;
+}
+.start-btn {
+  font-size: 48px;
+  font-family: 'gothambook';
+  color: #ff5155;
+  text-transform: uppercase;
+  text-shadow: 0 0 16px rgba(0, 0, 0, 0.16);
+  font-family: Gotham;
+  font-size: 48px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.21;
+  letter-spacing: normal;
+}
