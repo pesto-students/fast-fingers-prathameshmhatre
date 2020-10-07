@@ -1,70 +1,214 @@
 @font-face {
   font-family: 'LaserCorpsGradient';
-  src: url('./fonts/lasercorpsgrad-webfont.woff2') format('woff2'),
-    url('./fonts/lasercorpsgrad-webfont.woff') format('woff');
-  font-weight: normal;
   font-style: normal;
+  font-weight: 400;
+  src: url(./fonts/lasercorpsgrad-webfont.woff) format('woff');
 }
 @font-face {
   font-family: 'gothambook';
-  src: url('./fonts/gotham_book_regular-webfont.woff2') format('woff2'),
-    url('./fonts/gotham_book_regular-webfont.woff') format('woff');
-  font-weight: normal;
   font-style: normal;
+  font-weight: 400;
+  src: url(./fonts/gotham_book_regular-webfont.woff) format('woff');
+}
+@font-face {
+  font-family: 'Breamcatcher';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./fonts/breamcatcher-webfont.woff) format('woff');
 }
 
 .large-keyboard {
-  font-size: 13em !important;
+  font-size: 10em;
   color: #ff5155;
 }
-.title-container {
+
+body {
   font-family: 'LaserCorpsGradient';
-  font-size: 81px;
+  background-repeat: no-repeat;
+  color: #fff;
+}
+
+.root {
+  height: 100vh;
+  background-image: -webkit-linear-gradient(bottom, #053b46f2 0%, #02171cfa 60%, #000000f7),
+    url(./images/bg-texture.png);
+  background-image: -o-linear-gradient(bottom, #053b46f2 0%, #02171cfa 60%, #000000f7),
+    url(./images/bg-texture.png);
+  background-image: -ms-linear-gradient(bottom, #053b46f2 0%, #02171cfa 60%, #000000f7),
+    url(./images/bg-texture.png);
+  background-image: -moz-linear-gradient(bottom, #053b46f2 0%, #02171cfa 60%, #000000f7),
+    url(./images/bg-texture.png);
+  background-image: linear-gradient(to top, #053b46f2 0%, #02171cfa 60%, #000000f7),
+    url(./images/bg-texture.png);
+}
+
+.btn-primary {
+  background: transparent;
+  color: #ff5155;
+  border: none;
+  padding: 0.5em;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+.btn-primary:hover {
+  background: transparent;
+  border: none;
+  color: #ff5155;
+}
+.btn-primary img {
+  width: 60px;
+}
+
+.form-control {
+  width: 440px;
+  margin: 1em auto;
+  padding: 0.75em;
+  background: #97a1a3;
+  border-color: #97a1a3;
+  border-radius: 8px;
+  color: #05191d;
+  outline: none;
+  font-weight: 400;
+}
+.form-control:focus {
+  background: #97a1a3;
+  border-color: #97a1a3;
+  color: #05191d;
+  box-shadow: none;
+}
+@media (max-width: 760px) {
+  .form-control {
+    width: 100%;
+  }
+}
+
+select.form-control {
+  background: transparent;
+  color: #97a1a3;
+}
+select.form-control:focus {
+  box-shadow: none;
+  background: transparent;
+  color: #97a1a3;
+}
+select.form-control options {
+  background: #97a1a3;
+  color: #05191d;
+  border: 0;
+}
+
+.start-btn {
+  margin: 2em 0;
+  color: #ed5053;
+  font-size: 2em;
+  text-decoration: none;
+  outline: none;
+  box-shadow: 0;
+}
+.start-btn:hover {
+  color: #ed5053;
+}
+
+.title-container {
+  margin: 2em 0;
+}
+.title-container h1 {
+  font-size: 3.5em;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: 1.2;
   letter-spacing: normal;
   text-align: left;
   color: #ff5155;
+  font-family: 'LaserCorpsGradient';
+  margin: 0;
+  line-height: 40px;
 }
-.subtitle-container {
+@media (max-width: 760px) {
+  .title-container h1 {
+    text-align: center;
+    line-height: 50px;
+  }
+}
+.title-container h6 {
+  font-size: 1.2em;
+  font-weight: 600;
   font-family: 'gothambook';
-  font-size: 26px;
-  font-weight: 500;
-  color: #ff5155;
-}
-.subtitle-container:before,
-.subtitle-container:after {
-  background-color: #ff5155;
-  content: '';
-  display: inline-block;
-  height: 1px;
   position: relative;
-  vertical-align: middle;
-  width: 50%;
-}
-
-.subtitle-container:before {
-  right: 1px;
-  margin-left: -50%;
-}
-
-.subtitle-container:after {
-  left: 1px;
-  margin-right: -50%;
-}
-.start-btn {
-  font-size: 48px;
-  font-family: 'gothambook';
   color: #ff5155;
+}
+.title-container h6:before,
+.title-container h6:after {
+  content: '';
+  height: 1px;
+  width: 20%;
+  background: #ff5155;
+  position: absolute;
+  top: 50%;
+  display: block;
+  transform: translateY(-50%);
+}
+@media (max-width: 760px) {
+  .title-container h6:before,
+  .title-container h6:after {
+    width: 10%;
+  }
+}
+.title-container h6:before {
+  left: 0;
+}
+.title-container h6:after {
+  right: 0;
+}
+
+.palyer-info h3 {
+  color: #ff5155;
+  font-family: 'Breamcatcher';
+  margin-bottom: 0px;
+}
+.palyer-info .fa-user,
+.fa-gamepad {
+  font-size: 25px;
+  color: #ff5155;
+}
+
+.score-board {
+  border: 1px solid #ff5155;
+  border-radius: 10px;
+  padding: 0.5em 2em;
+  max-height: 500px;
+  height: 100%;
+  width: 260px;
+  overflow: auto;
+}
+.score-board h4 {
+  font-size: 1.25em;
+  color: #ff5155;
+}
+.score-board ul {
+  padding: 0;
+  list-style: none;
+}
+.score-board ul li {
+  padding: 0.25em 0;
+  font-size: 1.25em;
+}
+.score-board ul .best-score p {
+  color: #ff5155;
+  font-size: 0.75em;
+  margin: 0;
+}
+
+.randomWord-container .randomWord-text {
+  font-size: 3.5em;
+  font-weight: 600;
   text-transform: uppercase;
-  text-shadow: 0 0 16px rgba(0, 0, 0, 0.16);
-  font-family: Gotham;
-  font-size: 48px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.21;
-  letter-spacing: normal;
+  color: #ff5155;
+}
+.randomWord-container .randomWordInput {
+  text-align: center;
 }

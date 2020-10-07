@@ -13,7 +13,7 @@ function App() {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/dashboard/:playerName" exact>
+          <Route path="/dashboard" exact>
             <Dashboard />
           </Route>
         </Switch>
