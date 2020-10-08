@@ -6,6 +6,9 @@ meet the requirements mentioned in the MVP below.
 ## Online Demo
 https://fast-fingers.prathameshmhatre.com
 
+## Credit
+- Animated Countdown Timer https://css-tricks.com/how-to-create-an-animated-countdown-timer-with-html-css-and-javascript/
+
 ## MVP Requirement
 
 1. Ask player to enter his/her name before starting the game.
