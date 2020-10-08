@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
   const initialState = {
@@ -41,11 +41,10 @@ const Home = () => {
       playerName,
       difficultyLevel,
       scoreBoard: [],
-      willThis: [],
     };
 
     // Check if the localstorage with name exists
-    if (!localStorage.getItem('player') === null) {
+    if (!(localStorage.getItem('player') === null)) {
       // Update the difficulty level
       player = JSON.parse(localStorage.getItem('player'));
 
@@ -57,6 +56,16 @@ const Home = () => {
 
     window.location = `/dashboard`;
   };
+
+  useEffect(() => {
+    if (!(localStorage.getItem('player') === null)) {
+      let player = JSON.parse(localStorage.getItem('player'));
+      setValues((values) => ({
+        ...values,
+        playerName: player.playerName,
+      }));
+    }
+  }, []);
 
   return (
     <div className="d-flex align-items-center justify-content-center vh-100">
