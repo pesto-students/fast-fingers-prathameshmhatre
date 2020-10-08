@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { getRandomWord } from '../../helpers/Index';
 import Timer from '../Timer/Index';
 import Header from '../Common/Header';
 import ScoreCard from '../Common/ScoreCard';
+import Result from '../Result/Index';
 
 const Dashboard = () => {
   const initialState = {
@@ -24,6 +24,7 @@ const Dashboard = () => {
   const [randomWordArray, setRandomWordArray] = useState([]);
   const [timer, setTimerValue] = useState(0);
   const [playerDetails, setPlayerDetails] = useState(player);
+  const [displayScore, setDisplayScore] = useState(false);
   let updatedS = time.s;
   let updatedMs = time.ms;
   let updatedGameMs = gameTime.ms;
@@ -108,8 +109,10 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    calculateTimerValue();
-  }, []);
+    if (!displayScore) {
+      calculateTimerValue();
+    }
+  }, [displayScore]);
 
   useEffect(() => {
     let tempArray = [];
@@ -131,6 +134,7 @@ const Dashboard = () => {
       } else {
         clearInterval(interval);
         saveScore();
+        setDisplayScore(true);
       }
     }, 10);
     return () => clearInterval(interval);
@@ -141,7 +145,7 @@ const Dashboard = () => {
       <Header playerDetails={playerDetails} />
       <div className="row px-3">
         <div className="col-sm-3">
-          <ScoreCard />
+          <ScoreCard playerDetails={playerDetails} />
           <div>
             <button className="btn btn-link btn-primary" onClick={(e) => stopGame(e)}>
               Stop Game
@@ -149,34 +153,42 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="col-sm-7">
-          <div className="d-flex flex-column align-items-center justify-content-center h-100">
-            <Timer time={time} timeLimit={timer}></Timer>
-            <div className="randomWord-container">
-              <h1 className="randomWord-text text-center">
-                {' '}
-                {randomWordArray.map((char, index) => {
-                  return (
-                    <span key={index} className={char.className}>
-                      {char.letter}
-                    </span>
-                  );
-                })}
-              </h1>
-              <form>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    name="randomWordInput"
-                    className="form-control player-input randomWordInput"
-                    onChange={(e) => handelChange(e)}
-                    onKeyUp={(e) => handleKeyPress(e)}
-                    value={values.randomWordInput}
-                    autoFocus={true}
-                  />
-                </div>
-              </form>
+          {displayScore ? (
+            <Result
+              setDisplayScore={setDisplayScore}
+              gameTime={gameTime}
+              playerDetails={playerDetails}
+            />
+          ) : (
+            <div className="d-flex flex-column align-items-center justify-content-center h-100">
+              <Timer time={time} timeLimit={timer}></Timer>
+              <div className="randomWord-container">
+                <h1 className="randomWord-text text-center">
+                  {' '}
+                  {randomWordArray.map((char, index) => {
+                    return (
+                      <span key={index} className={char.className}>
+                        {char.letter}
+                      </span>
+                    );
+                  })}
+                </h1>
+                <form>
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      name="randomWordInput"
+                      className="form-control player-input randomWordInput"
+                      onChange={(e) => handelChange(e)}
+                      onKeyUp={(e) => handleKeyPress(e)}
+                      value={values.randomWordInput}
+                      autoFocus={true}
+                    />
+                  </div>
+                </form>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>

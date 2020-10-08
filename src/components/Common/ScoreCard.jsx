@@ -1,28 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const ScoreCard = () => {
-    return(
-        <div className="score-board h-100">
-            <h4 className="text-uppercase mb-4">Score Board</h4>
-            <ul>
-                <li>
-                    <span>Game 1</span> : <span>1:14</span>
-                </li>
-                <li>
-                    <span>Game 1</span> : <span>1:14</span>
-                </li>
-                <li>
-                    <span>Game 1</span> : <span>1:14</span>
-                </li>
+const ScoreCard = ({ playerDetails }) => {
+  const score = playerDetails.scoreBoard;
+  const [personalBest, setPersonalBest] = useState({ game: 0, time: 0 });
+  const formatTime = (milliseconds) => {
+    const seconds = Math.floor(milliseconds / 100);
+    const minute = Math.floor(seconds / 60);
 
-                <li className="best-score">
-                    <p>Personal Best </p>
-                    <span>Game 5</span> : <span>1:14</span>
-                </li>
-            </ul>
-        </div>
-    );
+    return `${minute}:${seconds}`;
+  };
+  useEffect(() => {
+    if (score.length > 0) {
+      let tmp = score.map(function (element) {
+        return element.ms;
+      });
+      const maxValue = Math.max.apply(Math, tmp);
+
+      const gameNo = tmp.indexOf(maxValue);
+
+      setPersonalBest({ game: gameNo, time: maxValue });
+    }
+  }, [score.length]);
+  return (
+    <div className="score-board h-100">
+      <h4 className="text-uppercase mb-4">Score Board</h4>
+      <ul>
+        {score.map((game, index) => {
+          return (
+            <li>
+              <span>Game {index}</span> : <span>{formatTime(game.ms)}</span>
+            </li>
+          );
+        })}
+        <li className="best-score">
+          <p>Personal Best </p>
+          <span>Game {personalBest.game}</span> : <span>{formatTime(personalBest.time)}</span>
+        </li>
+      </ul>
+    </div>
+  );
 };
-
 
 export default ScoreCard;
