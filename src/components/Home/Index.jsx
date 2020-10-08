@@ -93,10 +93,18 @@ const Home = () => {
               onChange={(e) => handelChange(e)}
               value={values.difficultyLevel}
             >
-              <option value="">Difficulty Level</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
+              <option value="" className="level-option">
+                Difficulty Level
+              </option>
+              <option value="easy" className="level-option">
+                Easy
+              </option>
+              <option value="medium" className="level-option">
+                Medium
+              </option>
+              <option value="hard" className="level-option">
+                Hard
+              </option>
             </select>
           </div>
           <button type="submit" className="btn btn-link start-btn">

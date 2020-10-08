@@ -212,3 +212,21 @@ select.form-control options {
 .randomWord-container .randomWordInput {
   text-align: center;
 }
+.player-input,
+.level-select,
+.level-option {
+  font-family: 'breamcatcher';
+}
+.results h2 {
+  font-size: 3em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.results h1 {
+  font-size: 4.5em;
+  text-transform: uppercase;
+}
+.results h3 {
+  font-size: 2em;
+  font-weight: 400;
+}
