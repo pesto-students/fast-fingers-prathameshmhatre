@@ -172,6 +172,7 @@ const Dashboard = () => {
                 <form>
                   <div className="form-group">
                     <input
+                      autocomplete="off"
                       type="text"
                       name="randomWordInput"
                       className="form-control player-input randomWordInput"

@@ -26,12 +26,18 @@ const Home = () => {
     if (!values.difficultyLevel) {
       errors.difficultyLevel = 'Difficulty level is required';
     }
+
+    if (errors.length > 0) {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   const login = (e) => {
     e.preventDefault();
 
-    if (validateField()) {
+    if (!validateField()) {
       return false;
     }
 
@@ -48,7 +54,9 @@ const Home = () => {
       // Update the difficulty level
       player = JSON.parse(localStorage.getItem('player'));
 
-      player.level = difficultyLevel;
+      player.difficultyLevel = difficultyLevel;
+      player.playerName = playerName;
+      localStorage.setItem('player', JSON.stringify(player));
     } else {
       // Save the new player Data
       localStorage.setItem('player', JSON.stringify(player));
