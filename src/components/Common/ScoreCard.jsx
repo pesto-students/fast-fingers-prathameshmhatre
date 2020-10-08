@@ -32,10 +32,13 @@ const ScoreCard = ({ playerDetails }) => {
             </li>
           );
         })}
-        <li className="best-score">
-          <p>Personal Best </p>
-          <span>Game {personalBest.game}</span> : <span>{formatTime(personalBest.time)}</span>
-        </li>
+
+        {score.length > 0 ? (
+          <li className="best-score">
+            <p>Personal Best </p>
+            <span>Game {personalBest.game}</span> : <span>{formatTime(personalBest.time)}</span>
+          </li>
+        ) : null}
       </ul>
     </div>
   );

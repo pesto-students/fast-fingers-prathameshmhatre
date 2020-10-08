@@ -4,6 +4,7 @@ import Timer from '../Timer/Index';
 import Header from '../Common/Header';
 import ScoreCard from '../Common/ScoreCard';
 import Result from '../Result/Index';
+import Footer from '../Common/Footer';
 
 const Dashboard = () => {
   const initialState = {
@@ -144,13 +145,8 @@ const Dashboard = () => {
     <>
       <Header playerDetails={playerDetails} />
       <div className="row px-3">
-        <div className="col-sm-3">
-          <ScoreCard playerDetails={playerDetails} />
-          <div>
-            <button className="btn btn-link btn-primary" onClick={(e) => stopGame(e)}>
-              Stop Game
-            </button>
-          </div>
+        <div className="col-sm-3 h-100">
+          {!displayScore ? <ScoreCard playerDetails={playerDetails} /> : ''}
         </div>
         <div className="col-sm-7">
           {displayScore ? (
@@ -191,6 +187,7 @@ const Dashboard = () => {
           )}
         </div>
       </div>
+      <Footer displayScore={displayScore} stopGame={stopGame}></Footer>
     </>
   );
 };
