@@ -5,8 +5,6 @@ const Footer = ({ displayScore, stopGame }) => {
     window.location.href = '/';
   };
 
-  console.log('display Score-->', displayScore);
-
   return (
     <div className="footer">
       {displayScore ? (

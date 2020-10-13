@@ -18,7 +18,7 @@ const Dashboard = () => {
     // Redirect to home
     window.location = '/';
   }
-  const [time, setTime] = useState({ ms: 0, s: 0 });
+  const [time, setTime] = useState({ ms: 0, s: 0,totalms:0 });
   const [gameTime, setGameTime] = useState({ ms: 0, s: 0 });
   const [randomWord, setRandowmWord] = useState('');
   const [values, setValues] = useState(initialState);
@@ -28,6 +28,7 @@ const Dashboard = () => {
   const [displayScore, setDisplayScore] = useState(false);
   let updatedS = time.s;
   let updatedMs = time.ms;
+  let updatedTotalMs = time.totalms;
   let updatedGameMs = gameTime.ms;
   let updatedGameS = gameTime.s;
 
@@ -42,9 +43,9 @@ const Dashboard = () => {
     if (timerValue < 2) {
       timerValue = 2;
     }
-    setTimerValue(timerValue);
+    setTimerValue(((timerValue*100)+99));
 
-    setTime({ ms: 99, s: timerValue });
+    setTime({ ms: 99, s: timerValue,totalms: ((timerValue*100)+99) });
   };
 
   const handelChange = (e) => {
@@ -95,8 +96,9 @@ const Dashboard = () => {
     }
 
     updatedMs -= 1;
+    updatedTotalMs -=1;
 
-    return setTime({ ms: updatedMs, s: updatedS });
+    return setTime({ ms: updatedMs, s: updatedS ,totalms:updatedTotalMs});
   };
 
   const countUp = () => {
@@ -157,7 +159,7 @@ const Dashboard = () => {
             />
           ) : (
             <div className="d-flex flex-column align-items-center justify-content-center h-100">
-              <Timer time={time} timeLimit={timer}></Timer>
+              <Timer time={time} timeLimit={(timer)}></Timer>
               <div className="randomWord-container">
                 <h1 className="randomWord-text text-center">
                   {' '}

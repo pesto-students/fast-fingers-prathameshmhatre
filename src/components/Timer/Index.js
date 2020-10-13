@@ -3,8 +3,8 @@ import './style.css';
 
 const Timer = ({ time, timeLimit }) => {
   const FULL_DASH_ARRAY = 283;
-  const WARNING_THRESHOLD = 10;
-  const ALERT_THRESHOLD = 5;
+  const WARNING_THRESHOLD = 500;
+  const ALERT_THRESHOLD = 250;
 
   const COLOR_CODES = {
     info: {
@@ -20,20 +20,9 @@ const Timer = ({ time, timeLimit }) => {
     },
   };
   const [circleDasharray, setCircleDasharray] = useState('');
-  const [remainingPathColor, setRemainingPathColor] = useState('green');
-
-  const calculateRemainingPathColor = (timeLeft) => {
-    const { alert, warning, info } = COLOR_CODES;
-    if (timeLeft <= alert.threshold) {
-      setRemainingPathColor(warning.color);
-    } else if (timeLeft <= warning.threshold) {
-      setRemainingPathColor(alert.color);
-    }
-  };
-
   const calculateTimeFraction = () => {
-    const rawTimeFraction = time.s / timeLimit;
-    return rawTimeFraction - (1 / timeLimit) * (1 - rawTimeFraction);
+    const rawTimeFraction = time.totalms / timeLimit;
+    return rawTimeFraction - (1 / (timeLimit)) * (1 - rawTimeFraction);
   };
 
   const calculateCircleDasharray = () => {
@@ -52,9 +41,8 @@ const Timer = ({ time, timeLimit }) => {
   };
 
   useEffect(() => {
-    calculateRemainingPathColor(time.s);
     calculateCircleDasharray();
-  }, [time]);
+  }, [time.totalms]);
 
   return (
     <div className="base-timer">
@@ -64,7 +52,7 @@ const Timer = ({ time, timeLimit }) => {
           <path
             id="base-timer-path-remaining"
             strokeDasharray={circleDasharray}
-            className={`base-timer__path-remaining ${remainingPathColor}`}
+            className={`base-timer__path-remaining theme-color`}
             d="
           M 50, 50
           m -45, 0

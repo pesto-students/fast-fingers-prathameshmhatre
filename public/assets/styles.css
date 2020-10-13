@@ -21,6 +21,9 @@
   font-size: 10em;
   color: #ff5155;
 }
+.theme-color {
+  color: #ff5155;
+}
 
 body {
   font-family: 'LaserCorpsGradient';
